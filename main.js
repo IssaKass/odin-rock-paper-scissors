@@ -100,3 +100,73 @@
   // Step 8: Call the game function
   playGame()
 */
+
+const choices = ["rock", "paper", "scissors"];
+
+function getComputerChoice() {
+	const randomIndex = Math.floor(Math.random() * choices.length);
+	return choices[randomIndex];
+}
+
+function getHumanChoice() {
+	let humanChoice = "";
+	do {
+		humanChoice = prompt("Enter your choice: 'rock', 'paper' or 'scissors'");
+		humanChoice = humanChoice.toLowerCase();
+
+		if (!choices.includes(humanChoice)) {
+			alert("Invalid choice. Please enter 'rock', 'paper', or 'scissors'.");
+		}
+	} while (!choices.includes(humanChoice));
+
+	return humanChoice;
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+// a helper function to display the score after each round
+function displayScore() {
+	alert(`Score: Player (${humanScore}) | Computer (${computerScore})`);
+}
+
+function playRound(humanChoice, computerChoice) {
+	if (humanChoice === computerChoice) {
+		alert(`It's a tie`);
+	} else if (
+		(humanChoice === "rock" && computerChoice === "paper") ||
+		(humanChoice === "paper" && computerChoice === "scissors") ||
+		(humanChoice === "scissors" && computerChoice === "rock")
+	) {
+		computerScore++;
+		alert(`You lost! ${computerChoice} beats ${humanChoice}`);
+	} else {
+		humanScore++;
+		alert(`You won! ${humanChoice} beats ${computerChoice}`);
+	}
+	displayScore();
+}
+
+function playGame() {
+	for (let i = 0; i < 5; i++) {
+		let humanChoice = getHumanChoice();
+		let computerChoice = getComputerChoice();
+		playRound(humanChoice, computerChoice);
+	}
+
+	if (humanScore > computerScore) {
+		alert(
+			`🎉 Congratulations! You won the game.\nFinal Score: Player (${humanScore}) | Computer (${computerScore})`
+		);
+	} else if (computerScore > humanScore) {
+		alert(
+			`😢 Sorry, you lost the game.\nFinal Score: Player (${humanScore}) | Computer (${computerScore})`
+		);
+	} else {
+		alert(
+			`🤝 It's a tie!\nFinal Score: Player (${humanScore}) | Computer (${computerScore})`
+		);
+	}
+}
+
+playGame();
