@@ -13,3 +13,16 @@
   - have their score incremented.
 	- Each round’s result will be displayed with a winner announcement.
 */
+/*
+  ---- Planning ----
+  - The game is played in the browser console using prompts and alerts.
+  - The user inputs `ock", "paper", or "scissors"; the computer selects randomly.
+  - The game follows standard rules:
+    - Rock beats Scissors
+    - Scissors beats Paper
+    - Paper beats Rock
+    - Identical choices result in a tie.
+  - Scores are tracked across five rounds.
+  - Each round displays choices, the winner, and updated scores.
+  - After five rounds, the final winner is announced.
+*/
