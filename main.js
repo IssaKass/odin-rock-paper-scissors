@@ -101,38 +101,55 @@
   playGame()
 */
 
-const buttons = document.querySelector("#buttons");
-const resultElement = document.querySelector("#result");
-const humanScoreElement = document.querySelector("#human-score");
-const computerScoreElement = document.querySelector("#computer-score");
-const restartGameButton = document.querySelector("#restart-button");
-const choices = ["rock", "paper", "scissors"];
-let gameOver = false;
+const MAX_SCORE = 5;
+const QUESTION_IMAGE = "./images/question.png";
 
-restartGameButton.addEventListener("click", function (event) {
-	restartGameButton.hidden = true;
-	humanScore = computerScore = 0;
-	resultElement.textContent = "";
-	humanScoreElement.textContent = "";
-	computerScoreElement.textContent = "";
-});
+const scoresElement = document.querySelector("#scores");
+const resultElement = document.querySelector("#result");
+const humanChoiceImage = document.querySelector("#human-choice img");
+const computerChoiceImage = document.querySelector("#computer-choice img");
+const buttons = document.querySelectorAll("#buttons button");
+const restartPanel = document.querySelector("#restart-panel");
+const restartGameButton = document.querySelector("#restart-button");
+
+const choices = ["rock", "paper", "scissors"];
+const choiceMap = {
+	rock: "./images/rock.png",
+	paper: "./images/paper.png",
+	scissors: "./images/scissors.png",
+};
+
+let gameOver = false;
+let humanScore = 0;
+let computerScore = 0;
+
+function resetGame() {
+	gameOver = false;
+	humanScore = 0;
+	computerScore = 0;
+
+	scoresElement.textContent = "0 : 0";
+  
+	resultElement.textContent = "Choose your weapon";
+	resultElement.dataset.status = "";
+  
+	humanChoiceImage.src = QUESTION_IMAGE;
+	computerChoiceImage.src = QUESTION_IMAGE;
+  
+	restartPanel.classList.remove("active");
+}
 
 function getComputerChoice() {
 	const randomIndex = Math.floor(Math.random() * choices.length);
 	return choices[randomIndex];
 }
 
-let humanScore = 0;
-let computerScore = 0;
-
-// a helper function to display the score after each round
 function displayScore() {
-	humanScoreElement.textContent = `Human: ${humanScore}`;
-	computerScoreElement.textContent = `Computer: ${computerScore}`;
+	scoresElement.textContent = `${humanScore} : ${computerScore}`;
 }
 
 function checkWinner() {
-	if (humanScore < 5 && computerScore < 5) {
+	if (humanScore < MAX_SCORE && computerScore < MAX_SCORE) {
 		return;
 	}
 
@@ -145,35 +162,47 @@ function checkWinner() {
 	}
 
 	gameOver = true;
-	resetGame();
-}
-
-function resetGame() {
-	restartGameButton.hidden = false;
+	restartPanel.classList.add("active");
 }
 
 function playRound(humanChoice, computerChoice) {
+	humanChoiceImage.src = choiceMap[humanChoice];
+	computerChoiceImage.src = choiceMap[computerChoice];
+
 	if (humanChoice === computerChoice) {
-		resultElement.textContent = "It's a tie!";
+		resultElement.textContent = "You tied!";
+		resultElement.dataset.status = "tie";
 	} else if (
 		(humanChoice === "rock" && computerChoice === "paper") ||
 		(humanChoice === "paper" && computerChoice === "scissors") ||
 		(humanChoice === "scissors" && computerChoice === "rock")
 	) {
-		resultElement.textContent = `You lost that round! ${computerChoice} beats ${humanChoice}`;
+		resultElement.textContent = `You lost! ${computerChoice} beats ${humanChoice}`;
+		resultElement.dataset.status = "lose";
 		computerScore++;
 	} else {
-		resultElement.textContent = `You won that round! ${humanChoice} beats ${computerChoice}`;
+		resultElement.textContent = `You won! ${humanChoice} beats ${computerChoice}`;
+		resultElement.dataset.status = "win";
 		humanScore++;
 	}
 	displayScore();
 	checkWinner();
 }
 
-buttons.addEventListener("click", function (event) {
-	if (gameOver || !event.target.dataset.choice) return;
+buttons.forEach((button) => {
+	button.addEventListener("click", function (event) {
+		if (gameOver) return;
 
-	const humanChoice = event.target.dataset.choice;
-	const computerChoice = getComputerChoice();
-	playRound(humanChoice, computerChoice);
+		const humanChoice = button.dataset.choice;
+		const computerChoice = getComputerChoice();
+		playRound(humanChoice, computerChoice);
+	});
+});
+
+restartGameButton.addEventListener("click", function (event) {
+	resetGame();
+});
+
+document.addEventListener("DOMContentLoaded", function (event) {
+	resetGame();
 });
