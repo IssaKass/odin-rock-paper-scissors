@@ -122,20 +122,6 @@ function getComputerChoice() {
 	return choices[randomIndex];
 }
 
-function getHumanChoice() {
-	let humanChoice = "";
-	do {
-		humanChoice = prompt("Enter your choice: 'rock', 'paper' or 'scissors'");
-		humanChoice = humanChoice.toLowerCase();
-
-		if (!choices.includes(humanChoice)) {
-			alert("Invalid choice. Please enter 'rock', 'paper', or 'scissors'.");
-		}
-	} while (!choices.includes(humanChoice));
-
-	return humanChoice;
-}
-
 let humanScore = 0;
 let computerScore = 0;
 
