@@ -10,15 +10,12 @@ You can view the live preview of the game by clicking the link below:
 
 ## How to play
 
-1. Enter rock, paper, or scissors when prompted.
+1. Click on one of the buttons: rock, paper, or scissors.
 2. The computer makes a random choice.
 3. The result is displayed, and the game continues for 5 rounds.
 
 ## Technologies Used
 
 - HTML
+- CSS
 - JavaScript
-
-## Future Improvements
-
-- Add a graphical user interface (GUI).

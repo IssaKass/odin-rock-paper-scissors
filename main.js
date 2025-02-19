@@ -18,7 +18,7 @@ const restartMessage = document.querySelector("#restart-message");
 const restartGameButton = document.querySelector("#restart-button");
 
 const choices = ["rock", "paper", "scissors"];
-const choiceMap = { rock: "✊", paper: "✋", scissors: "✌" };
+const choiceMap = { rock: "✊", paper: "✋", scissors: "✌🏻" };
 
 let gameOver = false;
 let humanScore = 0;
