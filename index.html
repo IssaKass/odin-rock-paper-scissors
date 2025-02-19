@@ -4,19 +4,59 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Rock, Paper, Scissors</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="./style.css" />
 	</head>
 	<body>
-		<div id="buttons">
-			<button data-choice="rock">Rock</button>
-			<button data-choice="paper">Paper</button>
-			<button data-choice="scissors">Scissors</button>
-			<button id="restart-button" hidden>Restart Game</button>
-		</div>
-		<div>
-			<div id="result"></div>
-			<div id="human-score"></div>
-			<div id="computer-score"></div>
-		</div>
+		<main class="container">
+			<h1>Rock, Paper, Scissors</h1>
+
+			<table class="scoreboard">
+				<thead>
+					<tr>
+						<th>Player</th>
+						<th>Computer</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="2" id="scores"></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div id="result" class="result"></div>
+
+			<div class="choices">
+				<div id="human-choice" class="choice">
+					<img src="" alt="" />
+				</div>
+				<div id="computer-choice" class="choice">
+					<img src="" alt="" />
+				</div>
+			</div>
+
+			<div id="buttons">
+				<button data-choice="rock">
+					<img src="./images/rock.png" alt="Rock Image" />
+				</button>
+				<button data-choice="paper">
+					<img src="./images/paper.png" alt="Paper Image" />
+				</button>
+				<button data-choice="scissors">
+					<img src="./images/scissors.png" alt="Scissors Image" />
+				</button>
+			</div>
+
+			<div id="restart-panel">
+				<button id="restart-button">Restart Game</button>
+			</div>
+		</main>
 
 		<script src="./main.js"></script>
 	</body>
