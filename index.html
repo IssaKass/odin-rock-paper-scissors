@@ -7,56 +7,66 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="./style.css" />
 	</head>
 	<body>
-		<main class="container">
-			<h1>Rock, Paper, Scissors</h1>
-
-			<table class="scoreboard">
-				<thead>
-					<tr>
-						<th>Player</th>
-						<th>Computer</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td colspan="2" id="scores"></td>
-					</tr>
-				</tbody>
-			</table>
-
-			<div id="result" class="result"></div>
-
-			<div class="choices">
-				<div id="human-choice" class="choice">
-					<img src="" alt="" />
-				</div>
-				<div id="computer-choice" class="choice">
-					<img src="" alt="" />
-				</div>
+		<div id="restart-panel" class="restart-panel">
+			<div class="container">
+				<h2 id="restart-message" class="restart-message"></h2>
+				<button id="restart-button" class="restart-button">Restart Game</button>
 			</div>
+		</div>
 
-			<div id="buttons">
-				<button data-choice="rock">
-					<img src="./images/rock.png" alt="Rock Image" />
-				</button>
-				<button data-choice="paper">
-					<img src="./images/paper.png" alt="Paper Image" />
-				</button>
-				<button data-choice="scissors">
-					<img src="./images/scissors.png" alt="Scissors Image" />
-				</button>
+		<header>
+			<div class="container">
+				<h1 class="title">Rock Paper Scissors</h1>
 			</div>
+		</header>
+		<main>
+			<div class="container">
+				<h3 id="score-message" class="score-message"></h3>
 
-			<div id="restart-panel">
-				<button id="restart-button">Restart Game</button>
+				<div class="scores">
+					<div class="score-box">
+						<div id="human-choice" class="choice"></div>
+						<div class="score">
+							🧑 :
+							<span id="human-score"></span>
+						</div>
+					</div>
+					<div class="score-box">
+						<div id="computer-choice" class="choice"></div>
+						<div class="score">
+							🤖 :
+							<span id="computer-score"></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="rounds">
+					<h3 class="rounds-count">
+						Round
+						<span id="rounds-count"></span>
+					</h3>
+					<ul id="rounds-list" class="rounds-list"></ul>
+				</div>
+
+				<div id="buttons" class="buttons">
+					<button data-choice="rock">✊</button>
+					<button data-choice="paper">✋</button>
+					<button data-choice="scissors">✌</button>
+				</div>
 			</div>
 		</main>
+		<footer>
+			&copy; 2025 - IssaKass
+			<a href="https://github.com/IssaKass" target="_blank">
+				<img src="./images/github.svg" alt="Github icon" />
+			</a>
+		</footer>
 
 		<script src="./main.js"></script>
 	</body>
